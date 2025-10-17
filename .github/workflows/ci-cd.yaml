@@ -1,5 +1,9 @@
 name: CI/CD Pipeline
 
+# 토큰에 write 권한을 부여합니다.
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
