@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
     
     # 2. Docker Buildx 설정
     - name: Set up Docker Buildx
@@ -72,6 +72,8 @@ jobs:
         git add apps/demo-app/deployment.yaml
         git commit -m "🚀 Update image to ${{ steps.image_tag.outputs.tag }}" || exit 0
         git push
+        git remote set-url origin https://x-access-token:${{ GH_PAT }}@github.com/${{ github.repository }}.git
+          git push origin main
     
     # 8. 배포 완료 알림
     - name: Deployment summary
